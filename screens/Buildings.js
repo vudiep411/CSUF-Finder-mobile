@@ -1,15 +1,17 @@
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Searchbar from '../components/Searchbar'
 import BuildingCard from '../components/BuildingCard'
 import { BUILDING_NAMES } from '../constants/coordinates'
 import { SIZES, COLORS } from '../constants'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { MapContext } from '../context/Context'
 
 const Buildings = () => {
     const [buildings, setBuildings] = useState(BUILDING_NAMES)
-    const navigation = useNavigation()    
+    const navigation = useNavigation()   
+    const { mapRef, setBuildingPos } = useContext(MapContext)
   return (
     <View>
         <View style={{
@@ -35,7 +37,7 @@ const Buildings = () => {
       <Searchbar setBuildings={setBuildings} data={BUILDING_NAMES}/>
       <FlatList
         data={buildings}
-        renderItem={({ item }) => <BuildingCard name={item}/>}
+        renderItem={({ item }) => <BuildingCard name={item} mapRef={mapRef} navigation={navigation} setBuildingPos={setBuildingPos}/>}
         // keyExtractor={(item) => item.id}
         // showsVerticalScrollIndicator={false}
     />

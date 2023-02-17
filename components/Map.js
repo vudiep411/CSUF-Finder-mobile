@@ -4,10 +4,12 @@ import MapView, { Marker } from 'react-native-maps';
 import { CSUFCoords } from '../constants/coordinates';
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
+import { MapContext } from '../context/Context';
+import { useContext } from 'react';
 
-const Map = ({ currentLocation, setCurrentLocation, mapRef }) => {
+const Map = ({ currentLocation, setCurrentLocation }) => {
     // const [region, setRegion] = useState(currentLocation);
-
+    const { mapRef, buildingPos } = useContext(MapContext)
     // console.log(region)
     useEffect(() => {
         (async () => {
@@ -41,7 +43,8 @@ const Map = ({ currentLocation, setCurrentLocation, mapRef }) => {
           // onRegionChangeComplete={(region) => setRegion(region)}
           showsUserLocation={true}
         >
-            <Marker coordinate={CSUFCoords} title="California State University Fullerton" />
+            {/* <Marker coordinate={CSUFCoords} title="California State University Fullerton" /> */}
+            <Marker coordinate={buildingPos} />
         </MapView>
       </View>
     );

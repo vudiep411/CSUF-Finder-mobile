@@ -4,12 +4,13 @@ import Header from '../components/Header'
 import Map from '../components/Map'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { CSUFCoords } from '../constants/coordinates';
-
+import { useContext } from 'react';
+import { MapContext } from '../context/Context';
 import { COLORS, SIZES } from '../constants';
 
 const Home = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
-  const mapRef = useRef(null)
+  const { mapRef } = useContext(MapContext)
 
   const handlePanto = (mapRef, coordinate) => {
     mapRef?.current.animateToRegion(coordinate)
@@ -18,7 +19,7 @@ const Home = () => {
   return (
     <View>
       <Header/>
-      <Map currentLocation={currentLocation} setCurrentLocation={setCurrentLocation} mapRef={mapRef}/>
+      <Map currentLocation={currentLocation} setCurrentLocation={setCurrentLocation}/>
       <TouchableOpacity 
         style={{
           width: 40,
