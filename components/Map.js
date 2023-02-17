@@ -2,17 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { CSUFCoords } from '../constants/coordinates';
+import { MaterialIcons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 
-const Map = () => {
-    const [region, setRegion] = useState({
-      latitude: 33.88251681175372,
-      longitude: -117.88512475905357,
-      latitudeDelta: 0.009,
-      longitudeDelta: 0.009,
-    });
-    const [currentLocation, setCurrentLocation] = useState(null);
+const Map = ({ currentLocation, setCurrentLocation, mapRef }) => {
+    // const [region, setRegion] = useState(currentLocation);
 
+    // console.log(region)
     useEffect(() => {
         (async () => {
           let { status } = await Location.requestForegroundPermissionsAsync();
@@ -20,26 +16,32 @@ const Map = () => {
             return;
           }
     
-          let location = await Location.getCurrentPositionAsync({});
-          setCurrentLocation(location.coords);
+          let location = await Location.watchPositionAsync(
+            {
+              accuracy: Location.Accuracy.High,
+              timeInterval: 1000, // update location every 5 seconds
+              mayShowUserSettingsDialog: true
+            },
+            (newLocation) => setCurrentLocation(newLocation.coords)
+          );
         })();
       }, []);
 
     return (
       <View style={styles.container}>
         <MapView
+          ref={mapRef}
           style={styles.map}
-          initialRegion={CSUFCoords}
           region={{
             latitude: currentLocation?.latitude,
             longitude: currentLocation?.longitude,
             latitudeDelta: 0.015,
             longitudeDelta: 0.015,
           }}
-          onRegionChangeComplete={(region) => setRegion(region)}
+          // onRegionChangeComplete={(region) => setRegion(region)}
           showsUserLocation={true}
         >
-            <Marker coordinate={CSUFCoords} title="School" />
+            <Marker coordinate={CSUFCoords} title="California State University Fullerton" />
         </MapView>
       </View>
     );

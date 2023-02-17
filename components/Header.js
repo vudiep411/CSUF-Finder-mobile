@@ -2,9 +2,11 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { COLORS, FONTS, SIZES } from "../constants";
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+    const navigation = useNavigation()
+
   return (
     <View
         style={{
@@ -15,6 +17,7 @@ const Header = () => {
         <View style={{
             flexDirection: 'row',
             justifyContent: 'space-between'
+            
         }}>
             <Text
                 style={{
@@ -27,10 +30,10 @@ const Header = () => {
                 Finder
             </Text>
             <Icon
-                style={{
-                    marginTop: 35
-                }} 
-                name="search" size={SIZES.large + 2} 
+                style={{ marginTop: 35 }} 
+                onPress={() => navigation.navigate("Buildings")}
+                name="search" 
+                size={SIZES.large + 2} 
                 color={COLORS.white}
             />
         </View>
