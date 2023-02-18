@@ -7,6 +7,7 @@ import { BUILDING_NAMES } from '../constants/coordinates'
 import { SIZES, COLORS } from '../constants'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MapContext } from '../context/Context'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Buildings = () => {
     const [buildings, setBuildings] = useState(BUILDING_NAMES)
@@ -34,13 +35,14 @@ const Buildings = () => {
                 </Text>
             </TouchableOpacity>
         </View>
-      <Searchbar setBuildings={setBuildings} data={BUILDING_NAMES}/>
-      <FlatList
-        data={buildings}
-        renderItem={({ item }) => <BuildingCard name={item} mapRef={mapRef} navigation={navigation} setBuildingPos={setBuildingPos}/>}
-        // keyExtractor={(item) => item.id}
-        // showsVerticalScrollIndicator={false}
-    />
+        <Searchbar setBuildings={setBuildings} data={BUILDING_NAMES}/>
+        <FlatList
+        style={{ marginBottom: 150}}
+            data={buildings}
+            renderItem={({ item }) => <BuildingCard name={item} mapRef={mapRef} navigation={navigation} setBuildingPos={setBuildingPos}/>}
+            // keyExtractor={(item) => item.id}
+            // showsVerticalScrollIndicator={false}
+        />
     </View>
   )
 }

@@ -17,8 +17,13 @@ const theme = {
 export default function App() {
   const mapRef = useRef(null)
   const [buildingPos, setBuildingPos] = useState(null)
+  const [isPopup, setIsPopup] = useState(false)
+  const [currentLocation, setCurrentLocation] = useState(null)
+  
   return (
-    <MapContext.Provider value={{ mapRef, buildingPos, setBuildingPos }}>
+    <MapContext.Provider value=
+      {{ mapRef, buildingPos, setBuildingPos, 
+        isPopup, setIsPopup, currentLocation, setCurrentLocation }}>
       <NavigationContainer theme={theme}>
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Home">
           <Stack.Screen name="Home" component={Home}/>

@@ -9,8 +9,7 @@ import { MapContext } from '../context/Context';
 import { COLORS, SIZES } from '../constants';
 
 const Home = () => {
-  const [currentLocation, setCurrentLocation] = useState(null);
-  const { mapRef } = useContext(MapContext)
+  const { mapRef, currentLocation } = useContext(MapContext)
 
   const handlePanto = (mapRef, coordinate) => {
     mapRef?.current.animateToRegion(coordinate)
@@ -19,7 +18,7 @@ const Home = () => {
   return (
     <View>
       <Header/>
-      <Map currentLocation={currentLocation} setCurrentLocation={setCurrentLocation}/>
+      <Map/>
       <TouchableOpacity 
         style={{
           width: 40,

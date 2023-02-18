@@ -7,9 +7,9 @@ import * as Location from 'expo-location';
 import { MapContext } from '../context/Context';
 import { useContext } from 'react';
 
-const Map = ({ currentLocation, setCurrentLocation }) => {
+const Map = () => {
     // const [region, setRegion] = useState(currentLocation);
-    const { mapRef, buildingPos } = useContext(MapContext)
+    const { mapRef, buildingPos, currentLocation, setCurrentLocation } = useContext(MapContext)
     // console.log(region)
     useEffect(() => {
         (async () => {
