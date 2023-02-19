@@ -50,7 +50,7 @@ const Map = () => {
               destination={buildingPos}
               apikey={GOOGLE_API_KEY}
               strokeWidth={8}
-              strokeColor='blue'
+              strokeColor='#007FFF'
             />
             <Marker coordinate={buildingPos} />
         </MapView>

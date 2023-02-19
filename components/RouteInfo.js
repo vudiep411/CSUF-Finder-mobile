@@ -34,23 +34,13 @@ const RouteInfo = () => {
         backgroundColor: COLORS.white
       }}
       ref={bottomRef}
-      snapPoints={['18%', '35%', '90%']}
-      initialSnap={1}
+      snapPoints={['30%', '18%', '60%']}
     >
       <View 
-        style={{  
-          backgroundColor: COLORS.primary,
-          paddingLeft: 15,
-          paddingRight: 15,
-          width: '100%',
-          height: '100%',
-        }}
+        style={styles.container}
       >
         <View
-          style={{
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-          }}
+          style={styles.header}
         >
           <Text style={styles.title}>{popupInfo.buildingName}</Text>
           <TouchableOpacity onPress={handleClose}>
@@ -83,22 +73,38 @@ const RouteInfo = () => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: COLORS.primary,
+    paddingLeft: 15,
+    paddingRight: 15,
+    width: '100%',
+    height: '100%',
+  },
+
+  header: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+
   text: {
     fontSize: SIZES.large,
     color: COLORS.white,
     marginBottom: 5
   },
+
   title: {
     fontSize: SIZES.extraLarge,
     fontWeight: 'bold',
     color: COLORS.white,
     marginBottom: 40
   },
+
   button: {
     padding: 15,
     backgroundColor: 'green',
     borderRadius: 10
   },
+
   buttonText: {
     fontSize: SIZES.large,
     color: COLORS.white,    
