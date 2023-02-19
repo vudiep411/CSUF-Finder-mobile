@@ -41,12 +41,14 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: COLORS.white,
     },
+
     header: {
         backgroundColor: COLORS.primary,
         paddingTop: SIZES.large,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    
     text: {
         color: COLORS.white,
         fontSize: SIZES.large        

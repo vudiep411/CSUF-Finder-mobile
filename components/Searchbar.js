@@ -1,11 +1,9 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import { COLORS, FONTS, SIZES } from "../constants";
+import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { COLORS, SIZES } from "../constants";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native';
 
 const Searchbar = ({ setBuildings, data }) => {
-    const navigation = useNavigation()
 
     const handleSearch = (value) => {
         if(value.length > 0) {
@@ -17,25 +15,8 @@ const Searchbar = ({ setBuildings, data }) => {
     }
 
   return (
-    <View
-        style={{
-            padding: SIZES.large,
-            backgroundColor: COLORS.primary,
-            flexDirection: 'row',
-            justifyContent: 'center'
-        }}
-    >
-        <View 
-            style={{
-                width: "100%",
-                borderRadius: SIZES.font,
-                backgroundColor: COLORS.gray,
-                flexDirection: "row",
-                alignItems: "center",
-                paddingHorizontal: SIZES.font,
-                paddingVertical: SIZES.small
-              }}
-        >
+    <View style={styles.container}>
+        <View style={styles.header}>
             <TouchableOpacity>
                 <Icon
                     style={{marginRight: 10}}
@@ -53,5 +34,22 @@ const Searchbar = ({ setBuildings, data }) => {
     </View>
   )
 }
+const styles = StyleSheet.create({
+    container: {
+        padding: SIZES.large,
+        backgroundColor: COLORS.primary,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
 
+    header: {
+        width: "100%",
+        borderRadius: SIZES.font,
+        backgroundColor: COLORS.gray,
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: SIZES.font,
+        paddingVertical: SIZES.small
+    },
+});
 export default Searchbar

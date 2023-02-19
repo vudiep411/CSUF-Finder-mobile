@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useContext } from 'react'
 import { COLORS, SIZES, FONTS } from '../constants'
 import { BUILDINGS_COORDS } from '../constants/coordinates'
@@ -27,22 +27,26 @@ const BuildingCard = ({ name, mapRef, navigation, setBuildingPos }) => {
     
   return (
     <TouchableOpacity onPress={handlePress}>
-        <View
-            style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                padding: 20,
-                borderColor: 'gray',
-                borderWidth: 1
-            }}
-
-        >
-            <Text style={{ fontSize: SIZES.medium, fontWeight: 'bold'}}>
-                {name}
-            </Text>
+        <View style={styles.container}>
+            <Text style={styles.text}>{name}</Text>
         </View>
     </TouchableOpacity>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 20,
+        borderColor: 'gray',
+        borderWidth: 1
+    },
+
+    text: {
+        fontSize: SIZES.medium, 
+        fontWeight: 'bold'  
+    }
+});
 
 export default BuildingCard
