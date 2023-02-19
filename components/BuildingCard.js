@@ -7,14 +7,21 @@ import { MapContext } from '../context/Context'
 import { GOOGLE_API_KEY } from '@env'
 
 const BuildingCard = ({ name, mapRef, navigation, setBuildingPos }) => {
-    const { currentLocation } = useContext(MapContext)
+    const { currentLocation, setIsPopup, setPopUpInfo } = useContext(MapContext)
 
     const handlePress = async () => {
         const key = name.split('-')[0]
         mapRef?.current.animateToRegion(BUILDINGS_COORDS[key])
         setBuildingPos(BUILDINGS_COORDS[key])
-        const info = await getRouteInfo(currentLocation.latitude, currentLocation.longitude, BUILDINGS_COORDS[key].latitude, BUILDINGS_COORDS[key].longitude, GOOGLE_API_KEY)
-        console.log(info)
+        const info = await getRouteInfo(currentLocation.latitude, currentLocation.longitude, 
+            BUILDINGS_COORDS[key].latitude, BUILDINGS_COORDS[key].longitude, GOOGLE_API_KEY)
+        // console.log(info)
+        setPopUpInfo({
+            duration: info.duration,
+            distance: info.distance,
+            buildingName: name
+        })
+        setIsPopup(true)
         navigation.goBack()
     }
     
@@ -30,14 +37,9 @@ const BuildingCard = ({ name, mapRef, navigation, setBuildingPos }) => {
             }}
 
         >
-                <Text
-                    style={{
-                        fontSize: SIZES.medium,
-                        fontWeight: 'bold'
-                    }}
-                >
-                    {name}
-                </Text>
+            <Text style={{ fontSize: SIZES.medium, fontWeight: 'bold'}}>
+                {name}
+            </Text>
         </View>
     </TouchableOpacity>
   )

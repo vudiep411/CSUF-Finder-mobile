@@ -7,9 +7,10 @@ import { CSUFCoords } from '../constants/coordinates';
 import { useContext } from 'react';
 import { MapContext } from '../context/Context';
 import { COLORS, SIZES } from '../constants';
+import RouteInfo from '../components/RouteInfo';
 
 const Home = () => {
-  const { mapRef, currentLocation } = useContext(MapContext)
+  const { mapRef, currentLocation, isPopup } = useContext(MapContext)
 
   const handlePanto = (mapRef, coordinate) => {
     mapRef?.current.animateToRegion(coordinate)
@@ -61,6 +62,7 @@ const Home = () => {
           size={SIZES.large}
         />
       </TouchableOpacity>
+      { isPopup && <RouteInfo/>}
     </View>
   )
 }

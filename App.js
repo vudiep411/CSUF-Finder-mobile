@@ -19,11 +19,18 @@ export default function App() {
   const [buildingPos, setBuildingPos] = useState(null)
   const [isPopup, setIsPopup] = useState(false)
   const [currentLocation, setCurrentLocation] = useState(null)
-  
+  const [popupInfo, setPopUpInfo] = useState({
+    duration: 0,
+    distance: 0,
+    buildingName: ''
+  })
+
   return (
     <MapContext.Provider value=
       {{ mapRef, buildingPos, setBuildingPos, 
-        isPopup, setIsPopup, currentLocation, setCurrentLocation }}>
+        isPopup, setIsPopup, currentLocation, setCurrentLocation,
+        popupInfo, setPopUpInfo
+      }}>
       <NavigationContainer theme={theme}>
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Home">
           <Stack.Screen name="Home" component={Home}/>

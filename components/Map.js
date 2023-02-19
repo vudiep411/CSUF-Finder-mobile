@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import { MapContext } from '../context/Context';
 import { useContext } from 'react';
+import MapViewDirections from 'react-native-maps-directions';
+import { GOOGLE_API_KEY } from '@env'
 
 const Map = () => {
     // const [region, setRegion] = useState(currentLocation);
@@ -42,8 +44,14 @@ const Map = () => {
           }}
           // onRegionChangeComplete={(region) => setRegion(region)}
           showsUserLocation={true}
-        >
-            {/* <Marker coordinate={CSUFCoords} title="California State University Fullerton" /> */}
+        >   
+            <MapViewDirections
+              origin={currentLocation}
+              destination={buildingPos}
+              apikey={GOOGLE_API_KEY}
+              strokeWidth={8}
+              strokeColor='blue'
+            />
             <Marker coordinate={buildingPos} />
         </MapView>
       </View>
