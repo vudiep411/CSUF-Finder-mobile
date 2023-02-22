@@ -2,4 +2,4 @@
 Help new student find buildings for their classes
 
 ## Installation
-<p>For now, download Expo Go on your mobile device and go to <a href="https://expo.dev/@vudiep411/CSUF-finder">My app</a> to use the app</p>
+<p>For now, download Expo Go on your mobile device and go to <a href="https://expo.dev/@vudiep411/CSUF-finder">CSUF-Finder</a>scan the QR code and open it with Expo Go</p>
