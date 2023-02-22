@@ -1,5 +1,5 @@
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import Map from '../components/Map'
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -11,7 +11,6 @@ import RouteInfo from '../components/RouteInfo';
 
 const Home = () => {
   const { mapRef, currentLocation, isPopup, buildingPos, setBuildingPos } = useContext(MapContext)
-
   const handlePanto = (mapRef, coordinate) => {
     mapRef?.current.animateToRegion(coordinate)
   }

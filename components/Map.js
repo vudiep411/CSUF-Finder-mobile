@@ -10,40 +10,45 @@ import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_API_KEY } from '@env'
 
 const Map = () => {
-    // const [region, setRegion] = useState(currentLocation);
     const { mapRef, buildingPos, currentLocation, setCurrentLocation } = useContext(MapContext)
-    // console.log(region)
+
+    // const handleUserLocationChange = event => {
+    //   const { latitude, longitude } = event.nativeEvent.coordinate;
+    //   setCurrentLocation({
+    //     latitude,
+    //     longitude,
+    //     latitudeDelta: 0.01,
+    //     longitudeDelta: 0.01,
+    //   });
+    // };
+
     useEffect(() => {
         (async () => {
           let { status } = await Location.requestForegroundPermissionsAsync();
           if (status !== 'granted') {
             return;
           }
-    
-          let location = await Location.watchPositionAsync(
-            {
-              accuracy: Location.Accuracy.High,
-              timeInterval: 1000, // update location every 5 seconds
-              mayShowUserSettingsDialog: true
-            },
-            (newLocation) => setCurrentLocation(newLocation.coords)
-          );
-        })();
-      }, []);
+            let location = await Location.getCurrentPositionAsync({});
+            setCurrentLocation(location.coords)
+          } 
+        )();
+      }, [buildingPos]);
 
     return (
       <View style={styles.container}>
         <MapView
+          loadingEnabled={true}
           ref={mapRef}
           style={styles.map}
-          region={{
-            latitude: currentLocation?.latitude,
-            longitude: currentLocation?.longitude,
+          initialRegion={{
+            latitude: currentLocation ? currentLocation.latitude : CSUFCoords.latitude,
+            longitude: currentLocation ? currentLocation.longitude : CSUFCoords.longitude,
             latitudeDelta: 0.015,
             longitudeDelta: 0.015,
           }}
-          // onRegionChangeComplete={(region) => setRegion(region)}
           showsUserLocation={true}
+          // followsUserLocation={isTracking}
+          // onUserLocationChange={handleUserLocationChange}
         >   
             <MapViewDirections
               origin={currentLocation}
